@@ -100,7 +100,7 @@ def predict(
     return response, pixel_output
 
 input = "Is there any anomaly in the image?"
-root_dir = '../data/mvtec_anomaly_detection'
+root_dir = '/kaggle/input/mvtec-ad'
 
 mask_transform = transforms.Compose([
                                 transforms.Resize((224, 224)),
@@ -112,8 +112,8 @@ CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid','hazelnut', 'leath
 precision = []
 
 for c_name in CLASS_NAMES:
-    normal_img_paths = ["../data/mvtec_anomaly_detection/"+c_name+"/train/good/"+str(command_args.round * 4).zfill(3)+".png", "../data/mvtec_anomaly_detection/"+c_name+"/train/good/"+str(command_args.round * 4 + 1).zfill(3)+".png",
-                        "../data/mvtec_anomaly_detection/"+c_name+"/train/good/"+str(command_args.round * 4 + 2).zfill(3)+".png", "../data/mvtec_anomaly_detection/"+c_name+"/train/good/"+str(command_args.round * 4 + 3).zfill(3)+".png"]
+    normal_img_paths = ["/kaggle/input/mvtec-ad/"+c_name+"/train/good/"+str(command_args.round * 4).zfill(3)+".png", "/kaggle/input/mvtec-ad/"+c_name+"/train/good/"+str(command_args.round * 4 + 1).zfill(3)+".png",
+                        "/kaggle/input/mvtec-ad/"+c_name+"/train/good/"+str(command_args.round * 4 + 2).zfill(3)+".png", "/kaggle/input/mvtec-ad/"+c_name+"/train/good/"+str(command_args.round * 4 + 3).zfill(3)+".png"]
     normal_img_paths = normal_img_paths[:command_args.k_shot]
     right = 0
     wrong = 0
