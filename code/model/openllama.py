@@ -200,6 +200,7 @@ class OpenLLAMAPEFTModel(nn.Module):
         )
 
         self.llama_model = LlamaForCausalLM.from_pretrained(vicuna_ckpt_path)
+        print('got llama model')
         self.llama_model = get_peft_model(self.llama_model, peft_config)
         self.llama_model.print_trainable_parameters()
 
