@@ -51,7 +51,7 @@ args = {
 }
 
 model = OpenLLAMAPEFTModel(**args)
-delta_ckpt = torch.load(args['delta_ckpt_path'], map_location=torch.device('cuda'))
+delta_ckpt = torch.load(args['delta_ckpt_path'], map_location=torch.device('cpu'))
 model.load_state_dict(delta_ckpt, strict=False)
 delta_ckpt = torch.load(args['anomalygpt_ckpt_path'], map_location=torch.device('cpu'))
 model.load_state_dict(delta_ckpt, strict=False)
