@@ -199,7 +199,7 @@ class OpenLLAMAPEFTModel(nn.Module):
             target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj']
         )
 
-        self.llama_model = LlamaForCausalLM.from_pretrained(vicuna_ckpt_path)
+        self.llama_model = LlamaForCausalLM.from_pretrained(vicuna_ckpt_path, load_in_8bit=True, torch_dtype=torch.float16)
         print('got llama model')
         self.llama_model = get_peft_model(self.llama_model, peft_config)
         self.llama_model.print_trainable_parameters()
