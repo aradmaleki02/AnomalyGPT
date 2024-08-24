@@ -127,6 +127,7 @@ for c_name in CLASS_NAMES:
     for root, dirs, files in tqdm(os.walk(root_dir)):
         for file in files:
             file_path = os.path.join(root, file)
+            print(file_path)
             if "test" in file_path and 'png' in file and c_name in file_path:
                 if FEW_SHOT:
                     resp, anomaly_map = predict(describles[c_name] + ' ' + input, file_path, normal_img_paths, 512, 0.1, 1.0, [], [])
