@@ -205,8 +205,8 @@ class OpenLLAMAPEFTModel(nn.Module):
         self.llama_model.print_trainable_parameters()
 
         self.llama_tokenizer = LlamaTokenizer.from_pretrained(vicuna_ckpt_path, use_fast=False)
-        self.llama_tokenizer.pad_token = self.llama_tokenizer.eos_token
-        self.llama_tokenizer.padding_side = "right"
+        self.llama_tokenizer.pad_token = "[PAD]"
+        self.llama_tokenizer.padding_side = "left"
         print ('Language decoder initialized.')
 
         self.llama_proj = nn.Linear(
