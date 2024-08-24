@@ -55,7 +55,7 @@ delta_ckpt = torch.load(args['delta_ckpt_path'], map_location=torch.device('cpu'
 model.load_state_dict(delta_ckpt, strict=False)
 delta_ckpt = torch.load(args['anomalygpt_ckpt_path'], map_location=torch.device('cpu'))
 model.load_state_dict(delta_ckpt, strict=False)
-model = model.eval().half().cuda()
+model = model.eval().bfloat16().cuda()
 
 print(f'[!] init the 7b model over ...')
 
