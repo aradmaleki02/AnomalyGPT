@@ -1,4 +1,7 @@
 import os
+
+from tqdm import tqdm
+
 from model.openllama import OpenLLAMAPEFTModel
 import torch
 from torchvision import transforms
@@ -121,7 +124,7 @@ for c_name in CLASS_NAMES:
     p_label = []
     i_pred = []
     i_label = []
-    for root, dirs, files in os.walk(root_dir):
+    for root, dirs, files in tqdm(os.walk(root_dir)):
         for file in files:
             file_path = os.path.join(root, file)
             if "test" in file_path and 'png' in file and c_name in file_path:
