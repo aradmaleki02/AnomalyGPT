@@ -55,7 +55,7 @@ delta_ckpt = torch.load(args['delta_ckpt_path'], map_location=torch.device('cpu'
 model.load_state_dict(delta_ckpt, strict=False)
 delta_ckpt = torch.load(args['anomalygpt_ckpt_path'], map_location=torch.device('cpu'))
 model.load_state_dict(delta_ckpt, strict=False)
-model = model.eval().half().cuda()
+model = model.eval().bfloat16().cuda()
 
 print(f'[!] init the 7b model over ...')
 
@@ -141,7 +141,8 @@ for c_name in CLASS_NAMES:
                 img_mask = mask_transform(img_mask)
                 img_mask[img_mask > 0.1], img_mask[img_mask <= 0.1] = 1, 0
                 img_mask = img_mask.squeeze().reshape(224, 224).cpu().numpy()
-                
+
+                anomaly_map = anomaly_map.to(torch.float16)
                 anomaly_map = anomaly_map.reshape(224, 224).detach().cpu().numpy()
 
                 p_label.append(img_mask)
